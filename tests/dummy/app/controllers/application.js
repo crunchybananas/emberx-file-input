@@ -1,20 +1,22 @@
-import { htmlSafe } from '@ember/string';
-import { computed } from '@ember/object';
 import Controller from '@ember/controller';
+import { action } from '@ember/object';
+import { htmlSafe } from '@ember/string';
+import { tracked } from '@glimmer/tracking';
 
-export default Controller.extend({
-  multiFiles: [],
-  photoName: null,
-  photoPreviewUrl: null,
-  photoPreview: computed('photoPreviewUrl', function(){
-    let url = this.get('photoPreviewUrl');
+export default class extends Controller {
+  @tracked photoPreviewUrl = null;
+
+  multiFiles = [];
+  photoName = null;
+
+  get photoPreview() {
+    let url = this.photoPreviewUrl;
 
     return htmlSafe(`background-image: url("${url}")`);
-  }),
-
-  actions: {
-    doSomething(files, reset) {
-      reset();
-    }
   }
-});
+
+  @action
+  doSomething(files, reset) {
+    reset();
+  }
+}

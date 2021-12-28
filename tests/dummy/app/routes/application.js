@@ -2,7 +2,6 @@
 import Route from '@ember/routing/route';
 
 export default Route.extend({
-
   actions: {
     uploadAPhoto(fileList) {
       let re = new RegExp('image/*');

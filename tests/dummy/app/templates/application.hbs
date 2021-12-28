@@ -2,32 +2,30 @@
   <h2 id="title">Basic Emberx-File-Input</h2>
 
   <div style="margin-bottom: 10px;">
-    {{#x-file-input class="custom-class" action="uploadAPhoto" id="spec-file-input"}}
+    <XFileInput @class="custom-class" @action="uploadAPhoto" @id="spec-file-input">
       <h3>Shall you upload?</h3>
-    {{/x-file-input}}
+    </XFileInput>
   </div>
 
   <div>
     Non block:
-    {{x-file-input class="custom-class"
-      action="uploadAPhoto" id="spec-file-input-blockless"}}
+    <XFileInput @class="custom-class" @action="uploadAPhoto" @id="spec-file-input-blockless" />
   </div>
 </div>
 
 <div class="demo-wrapper">
-  {{#x-file-input action="uploadAPhoto" id="spec-file-input-two"}}
+  <XFileInput @action="uploadAPhoto" @id="spec-file-input-two">
     {{#if photoName}}
       <div style={{photoPreview}} class="demo-photo-preview"></div>
       <div class="photo-name">{{photoName}}</div>
     {{else}}
       <div class="demo-camera-icon"><i class="fa fa-camera-retro"></i></div>
     {{/if}}
-  {{/x-file-input}}
+  </XFileInput>
 </div>
 
 <div class="demo-wrapper">
-  {{x-file-input action="uploadManyFiles" class="custom-class"
-    id="spec-file-input-three" multiple=true alt="Upload multiple"}}
+  <XFileInput @action="uploadManyFiles" @class="custom-class" @id="spec-file-input-three" @multiple={{true}} @alt="Upload multiple" />
 
   {{#each multiFiles as |file|}}
     <p class="file-name">
@@ -38,6 +36,5 @@
 </div>
 
 <div class="demo-wrapper">
-  {{x-file-input alt="Upload Reset" action="doSomething"
-    id="spec-file-input-reset" class="custom-class"}}
+  <XFileInput @alt="Upload Reset" @action="doSomething" @id="spec-file-input-reset" @class="custom-class" />
 </div>
