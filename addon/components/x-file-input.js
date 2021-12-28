@@ -16,10 +16,22 @@ export default class XFileInput extends Component {
    *
    * @private
    * @method
-   * @param {$.Event} e Native change event
+   * @param {Event} e Native change event
    */
   change(e) {
     this.args.onChange(this.files(e), this.resetInput.bind(this));
+  }
+
+  /**
+   * Listens for change events on the native file input and dispatches
+   * the corresponding action up the context chain.
+   *
+   * @private
+   * @method
+   * @param {Event} e Native change event
+   */
+  uploadManyFiles(e) {
+    this.args.onUploadManyFiles(this.files(e), this.resetInput.bind(this));
   }
 
   /**
@@ -48,7 +60,7 @@ export default class XFileInput extends Component {
    *
    * @method
    * @private
-   * @param {$.Event || Event}
+   * @param {Event}
    */
   files(e) {
     if (e.target.files) {

@@ -1,1 +1,2 @@
 2021-12-28T16:05:23.751Z [warn] WARNING: {{file-icon}} was not converted as it has positional parameters which can't be automatically converted. Source: tests/dummy/app/templates/application.hbs
+2021-12-28T18:28:30.138Z [warn] WARNING: {{file-icon}} was not converted as it has positional parameters which can't be automatically converted. Source: tests/dummy/app/templates/application.hbs

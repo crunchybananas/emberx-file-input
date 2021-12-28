@@ -5,7 +5,7 @@ function buildChangeEvent(options = {}) {
   return event;
 }
 
-export default function(selector, file) {
+export default function (selector, file) {
   let changeEvent = buildChangeEvent({ testingFiles: [file] });
   document.querySelector(selector).dispatchEvent(changeEvent);
 }

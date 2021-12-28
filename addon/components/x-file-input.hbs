@@ -1,0 +1,13 @@
+<span class="{{if @disabled "x-file-input--disabled"}} x-file-input" ...attributes>
+  <input type="file" id={{randomId}} class="x-file--input" name={{name}}
+    disabled={{@disabled}} multiple={{@multiple}} tabindex={{@tabindex}} accept={{@accept}}
+    {{on "change" this.change}}
+    >
+  <label for="{{randomId}}">
+    {{#if (has-block)}}
+      {{yield}}
+    {{else}}
+      {{if @alt @alt "Upload"}}
+    {{/if}}
+  </label>
+</span>

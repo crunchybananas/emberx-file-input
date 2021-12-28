@@ -1,98 +1,118 @@
-import { visit } from '@ember/test-helpers';
 /* jshint expr:true */
 import { run } from '@ember/runloop';
 
-import {
-  describe,
-  it,
-  beforeEach,
-  afterEach
-} from 'mocha';
+import { describe, it, beforeEach, afterEach } from 'mocha';
 import { expect } from 'chai';
 import Ember from 'ember';
 import startApp from '../helpers/start-app';
 import sinon from 'sinon';
 
+import { setupApplicationTest } from 'ember-mocha';
+import { visit } from '@ember/test-helpers';
+
+import { setupRenderingTest } from 'ember-mocha';
+import { render } from '@ember/test-helpers';
+import hbs from 'htmlbars-inline-precompile';
+
 var App;
 
-describe('Acceptance: XFileInput', function() {
-  beforeEach(function() {
-    App = startApp();
-  });
+describe('XFileInputComponent', function() {
+  setupRenderingTest();
 
-  afterEach(function() {
-    run(App, 'destroy');
+  it('renders', async function() {
+    await render(hbs`<XFileInput @multiple={{false}}><div>Test</div></XFileInput>`);
+    console.log(this.element.innerHTML);
+    expect(this.element.querySelector('input')).to.exist;
   });
+});
 
-  beforeEach(function() {
-    return visit('/');
-  });
+describe('Acceptance: XFileInput', function () {
+  setupApplicationTest();
 
-  beforeEach(function() {
-    this.component = getComponentById('spec-file-input');
-  });
+  // beforeEach(function () {
+  //   App = startApp();
+  // });
 
-  it('renders', function() {
+  // afterEach(function () {
+  //   run(App, 'destroy');
+  // });
+
+  // beforeEach(function () {
+  //   return visit('/');
+  // });
+
+  // beforeEach(function () {
+  //   this.component = getComponentById('spec-file-input');
+  // });
+
+  it('renders', function () {
     expect(this.component).not.to.be.undefined;
   });
 
-  it('has a custom class', function() {
+  it('has a custom class', function () {
     expect(this.component.$()).to.have.class('x-file-input');
   });
 
-  it('has 0 tab index', function() {
+  it('has 0 tab index', function () {
     expect(this.component.$('input[type=file]')).to.have.attr('tabindex', '0');
   });
 
-  it('has contains its yielded content', function() {
-    expect(this.component.$('.spec-file-input__content :contains("Shall you upload?")')).not.to.be.empty;
+  it('has contains its yielded content', function () {
+    expect(
+      this.component.$(
+        '.spec-file-input__content :contains("Shall you upload?")'
+      )
+    ).not.to.be.empty;
   });
 
-  describe('With no block passed', function() {
-    beforeEach(function() {
+  describe('With no block passed', function () {
+    beforeEach(function () {
       this.blocklessComponent = getComponentById('spec-file-input-blockless');
     });
 
-    it('should provide default alt text', function() {
+    it('should provide default alt text', function () {
       expect(this.blocklessComponent.$().text().trim()).to.equal('Upload');
     });
-
   });
 
-
-  describe('Bound Attributes', function() {
-    beforeEach(function(){
+  describe('Bound Attributes', function () {
+    beforeEach(function () {
       this.component.setProperties({
         disabled: true,
         multiple: true,
-        name: "taco-cat",
-        accept: "image/jpg"
+        name: 'taco-cat',
+        accept: 'image/jpg',
       });
     });
 
-    it('binds disabled attribute on the native file input', function() {
+    it('binds disabled attribute on the native file input', function () {
       expect(this.component.$('input[type=file]')).not.to.be.enabled;
     });
 
-    it('binds the disabled css class on the whole component', function() {
+    it('binds the disabled css class on the whole component', function () {
       expect(this.component.$()).to.have.class('x-file-input--disabled');
     });
 
-    it('binds the multiple attribute on the native file input', function() {
+    it('binds the multiple attribute on the native file input', function () {
       expect(this.component.$('input[type=file]')).to.have.attr('multiple');
     });
 
-    it('binds the tabindex attribut on the native file input', function() {
-      expect(this.component.$('input[type=file]')).to.have.attr('name', 'taco-cat');
+    it('binds the tabindex attribut on the native file input', function () {
+      expect(this.component.$('input[type=file]')).to.have.attr(
+        'name',
+        'taco-cat'
+      );
     });
 
-    it("binds the accept attribute on the native file input", function() {
-      expect(this.component.$('input[type=file]')).to.have.attr('accept', 'image/jpg');
+    it('binds the accept attribute on the native file input', function () {
+      expect(this.component.$('input[type=file]')).to.have.attr(
+        'accept',
+        'image/jpg'
+      );
     });
   });
 
-  describe("Resetting the input", function() {
-
+  describe('Resetting the input', function () {
     /*
      * Since testing file inputs is basically impossible due to
      * security reasons, this test just asserts that when you trigger
@@ -102,25 +122,25 @@ describe('Acceptance: XFileInput', function() {
      * called. That's about all we can do to test this.
      *
      */
-    beforeEach(function() {
+    beforeEach(function () {
       let _this = this;
       this.resetComponent = getComponentById('spec-file-input-reset');
       // Spy on the resetInput method
       this.resetContext = null;
       // Warning, using a fat arrow function will not work. It will set
       // `this.resetContext` to the mocha test runner contect every time.
-      this.resetComponent.resetInput = sinon.spy(function() {
+      this.resetComponent.resetInput = sinon.spy(function () {
         _this.resetContext = this;
       });
 
       this.resetComponent.$('.x-file--input').trigger('change');
     });
 
-    it("calls the reset method", function() {
+    it('calls the reset method', function () {
       expect(this.resetComponent.resetInput).to.have.been.called;
     });
 
-    it("has the correct context sent", function() {
+    it('has the correct context sent', function () {
       expect(this.resetContext).to.deep.equal(this.resetComponent);
     });
   });

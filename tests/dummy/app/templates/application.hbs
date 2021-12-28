@@ -2,7 +2,7 @@
   <h2 id="title">Basic Emberx-File-Input</h2>
 
   <div style="margin-bottom: 10px;">
-    <XFileInput @class="custom-class" @action="uploadAPhoto" @id="spec-file-input">
+    <XFileInput @class="custom-class" @onChange={{this.uploadAPhoto}} @id="spec-file-input">
       <h3>Shall you upload?</h3>
     </XFileInput>
   </div>
@@ -14,10 +14,10 @@
 </div>
 
 <div class="demo-wrapper">
-  <XFileInput @action="uploadAPhoto" @id="spec-file-input-two">
-    {{#if photoName}}
-      <div style={{photoPreview}} class="demo-photo-preview"></div>
-      <div class="photo-name">{{photoName}}</div>
+  <XFileInput @onChange={{this.uploadAPhoto}} @id="spec-file-input-two">
+    {{#if this.photoName}}
+      <div style={{this.photoPreview}} class="demo-photo-preview"></div>
+      <div class="photo-name">{{this.photoName}}</div>
     {{else}}
       <div class="demo-camera-icon"><i class="fa fa-camera-retro"></i></div>
     {{/if}}
@@ -25,7 +25,7 @@
 </div>
 
 <div class="demo-wrapper">
-  <XFileInput @action="uploadManyFiles" @class="custom-class" @id="spec-file-input-three" @multiple={{true}} @alt="Upload multiple" />
+  <XFileInput @onUploadManyFiles={{this.uploadManyFiles}} @class="custom-class" @id="spec-file-input-three" @multiple={{true}} @alt="Upload multiple" />
 
   {{#each multiFiles as |file|}}
     <p class="file-name">
