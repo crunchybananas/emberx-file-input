@@ -1,5 +1,4 @@
 import Component from '@glimmer/component';
-import { cached } from '@glimmer/tracking';
 
 export default class XFileInput extends Component {
   /**
@@ -50,7 +49,6 @@ export default class XFileInput extends Component {
    * @method
    * @private
    */
-  @cached
   get randomId() {
     return Math.random().toString(36).substring(7);
   }
