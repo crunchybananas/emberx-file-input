@@ -27,7 +27,7 @@
     "ember-cli-htmlbars": "^2.0.1"
   },
   "devDependencies": {
-    "@embroider/test-setup": "^1.0.0",
+    "@embroider/test-setup": "^2.0.0",
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^3.0.0",
     "ember-cli": "~3.18.0",
