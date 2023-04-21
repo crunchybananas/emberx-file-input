@@ -1,9 +1,9 @@
-<input type="file" id={{randomId}} class="x-file--input" name={{name}}
-  disabled={{disabled}} multiple={{multiple}} tabindex={{tabindex}} accept={{accept}}>
-<label for="{{randomId}}">
-  {{#if hasBlock}}
+<input type="file" id={{this.randomId}} class="x-file--input" name={{@name}}
+  disabled={{@disabled}} multiple={{@multiple}} tabindex={{this.tabindex}} accept={{@accept}}>
+<label for="{{this.randomId}}">
+  {{#if (has-block)}}
     {{yield}}
   {{else}}
-    {{alt}}
+    <Alt />
   {{/if}}
 </label>

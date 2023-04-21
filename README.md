@@ -26,7 +26,7 @@ between you and your app.
 Bind an action to the file input:
 
 ```handlebars
-{{x-file-input name="files" multiple=true action=(action "didSelectFiles") alt="Choose a File"}}
+<XFileInput name="files" multiple=true action=(action "didSelectFiles") alt="Choose a File" />
 ```
 
 Whenever the user selects a file, the `didSelectfiles` action will be
@@ -39,7 +39,7 @@ In its blockless form, you will need to pass an `alt` attribute for
 the text you would like to be displayed inside the inputs label.
 
 ``` handlebars
-{{x-file-input alt="hello world"}}
+<XFileInput alt="hello world" />
 ```
 
 When passing a block, the HTML inside the block will be used as the

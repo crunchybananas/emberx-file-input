@@ -43,6 +43,10 @@
   border: 1px solid #d3d3d3;
 }
 
+.upload-box { 
+  margin-bottom: 10px;
+}
+
 .photo-name {
   padding: 8px;
   border: 1px solid #d3d3d3;
